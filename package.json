@@ -8,7 +8,7 @@
     "email": "haikaladha1996@gmail.com",
     "url": "https://github.com/hikaru150s"
   },
-  "repository": "https://github.com/hikaru150s/apricornus",
+  "repository": "https://github.com/hikaru150s/capricornus",
   "scripts": {
     "build": "tsc",
     "lint": "tslint --project tslint.json --exclude 'node_modules/**/*.{j,t}s'",
