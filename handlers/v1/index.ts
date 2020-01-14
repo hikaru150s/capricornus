@@ -11,3 +11,6 @@ export { router as UserScoringHandler } from './UserScoringHandler';
 export { router as UserScoringLogHandler } from './UserScoringLogHandler';
 export { router as LoginHandler } from './LoginHandler';
 export { router as LogoutHandler } from './LogoutHandler';
+export { router as GoalHandler } from './GoalHandler';
+export { router as ConstraintHandler } from './ConstraintHandler';
+export { router as SatisfactionHandler } from './SatisfactionHandler';

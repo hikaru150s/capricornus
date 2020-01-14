@@ -98,9 +98,15 @@
     <TypeScriptCompile Include="handlers\generic\index.ts" />
     <TypeScriptCompile Include="handlers\generic\morganLogRotator.ts" />
     <TypeScriptCompile Include="handlers\generic\notFoundHandler.ts" />
+    <TypeScriptCompile Include="handlers\v1\ConstraintHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\EvaluationFormHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\EvaluationHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\EvaluationLogHandler.ts" />
+    <TypeScriptCompile Include="handlers\v1\GoalHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\GroupHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\GroupScoringHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\GroupScoringLogHandler.ts" />
@@ -108,6 +114,9 @@
     <TypeScriptCompile Include="handlers\v1\LoginHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\LogoutHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\QuestionHandler.ts" />
+    <TypeScriptCompile Include="handlers\v1\SatisfactionHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\StudentHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\UserHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\UserScoringHandler.ts" />

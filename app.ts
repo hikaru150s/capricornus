@@ -6,21 +6,26 @@ import { AddressInfo } from 'net';
 import { join } from 'path';
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
+import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
+import { FORCE_DB } from './globals/Constants';
 import {
   errorHandler,
   logger,
   notFoundHandler,
 } from './handlers/generic';
 import {
+  ConstraintHandler,
   EvaluationFormHandler,
   EvaluationHandler,
   EvaluationLogHandler,
+  GoalHandler,
   GroupHandler,
   GroupScoringHandler,
   GroupScoringLogHandler,
   LoginHandler,
   LogoutHandler,
   QuestionHandler,
+  SatisfactionHandler,
   StudentHandler,
   UserHandler,
   UserScoringHandler,
@@ -28,6 +33,7 @@ import {
 } from './handlers/v1';
 import { jwtGuard } from './middlewares';
 
+const config: MysqlConnectionOptions = require('./ormconfig.json');
 const centaurus = express();
 const logDir = join(__dirname, 'logs');
 
@@ -53,6 +59,9 @@ centaurus.use('/api/question', jwtGuard, QuestionHandler);
 centaurus.use('/api/user_scoring_log', jwtGuard, UserScoringLogHandler);
 centaurus.use('/api/group_scoring_log', jwtGuard, GroupScoringLogHandler);
 centaurus.use('/api/eval_log', jwtGuard, EvaluationLogHandler);
+centaurus.use('/api/goal', jwtGuard, GoalHandler);
+centaurus.use('/api/constraint', jwtGuard, ConstraintHandler);
+centaurus.use('/api/satisfaction', jwtGuard, SatisfactionHandler);
 centaurus.use('/api', EvaluationFormHandler);
 centaurus.use('/api/login', LoginHandler);
 centaurus.use('/api/logout', LogoutHandler);
@@ -65,7 +74,25 @@ centaurus.use(errorHandler);
 
 (async () => {
   try {
-    const connection = await createConnection();
+    if (FORCE_DB) {
+      // Connect to root to check if db is exists
+      const master = await createConnection({
+        type: config.type,
+        host: config.host,
+        port: config.port,
+        username: 'root',
+        password: '',
+        synchronize: false,
+        cache: false,
+      });
+      const hasDB = await master.createQueryRunner().hasDatabase('corona');
+      if (!hasDB) {
+        await master.createQueryRunner().createDatabase('corona', true);
+      }
+      await master.close();
+      // Close root and establish user-level connection
+    }
+    const connection = await createConnection(config);
     /*
      * Trivial DB Creation (performance)
      *
@@ -73,7 +100,6 @@ centaurus.use(errorHandler);
      * default character set = "utf8mb4"
      * default collate = "utf8mb4_unicode_ci"
      */
-    await connection.createQueryRunner().createDatabase('corona', true);
     const server = http.createServer(centaurus).listen(centaurus.get('port'), () => {
       server.setTimeout(300000);
       const now = new Date().toISOString();
