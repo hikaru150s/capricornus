@@ -10,4 +10,7 @@ export * from './GroupScoringLog';
 export * from './EvaluationLog';
 export * from './Constraint';
 export * from './Goal';
-export * from './SatisfactionLog';
+export * from './ConstsraintSatisfactionQualityLog';
+export * from './FormationQualityLog';
+export * from './GoalSatisfactionQualityLog';
+export * from './PerceivedFormationSatisfactionLog';

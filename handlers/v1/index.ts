@@ -13,4 +13,7 @@ export { router as LoginHandler } from './LoginHandler';
 export { router as LogoutHandler } from './LogoutHandler';
 export { router as GoalHandler } from './GoalHandler';
 export { router as ConstraintHandler } from './ConstraintHandler';
-export { router as SatisfactionHandler } from './SatisfactionHandler';
+export { router as ConstraintSatisfactionQualityLogHandler } from './ConstraintSatisfactionQualityLogHandler';
+export { router as FormationQualityLogHandler } from './FormationQualityLogHandler';
+export { router as GoalSatisfactionQualityLogHandler } from './GoalSatisfactionQualityLogHandler';
+export { router as PerceivedFormationSatisfactionLogHandler } from './PerceivedFormationSatisfactionLogHandler';

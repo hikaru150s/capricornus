@@ -64,27 +64,33 @@
     <TypeScriptCompile Include="entities\Constraint.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="entities\ConstsraintSatisfactionQualityLog.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="entities\Evaluation.ts" />
     <TypeScriptCompile Include="entities\EvaluationLog.ts" />
+    <TypeScriptCompile Include="entities\FormationQualityLog.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="entities\Goal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="entities\GoalSatisfactionQualityLog.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="entities\Group.ts" />
     <TypeScriptCompile Include="entities\GroupScoring.ts" />
     <TypeScriptCompile Include="entities\GroupScoringLog.ts" />
     <TypeScriptCompile Include="entities\index.ts" />
-    <TypeScriptCompile Include="entities\Question.ts" />
-    <TypeScriptCompile Include="entities\SatisfactionLog.ts">
+    <TypeScriptCompile Include="entities\PerceivedFormationSatisfactionLog.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="entities\Question.ts" />
     <TypeScriptCompile Include="entities\Student.ts" />
     <TypeScriptCompile Include="entities\User.ts" />
     <TypeScriptCompile Include="entities\UserScoring.ts" />
     <TypeScriptCompile Include="entities\UserScoringLog.ts" />
     <TypeScriptCompile Include="enums\index.ts" />
-    <TypeScriptCompile Include="enums\SatisfactionScope.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="enums\ScoringSessionType.ts" />
     <TypeScriptCompile Include="enums\UserRoleType.ts" />
     <TypeScriptCompile Include="errors\BadRequestError.ts" />
@@ -101,10 +107,19 @@
     <TypeScriptCompile Include="handlers\v1\ConstraintHandler.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="handlers\v1\ConstraintSatisfactionQualityLogHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\EvaluationFormHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\EvaluationHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\EvaluationLogHandler.ts" />
+    <TypeScriptCompile Include="handlers\v1\FormationQualityLogHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\GoalHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="handlers\v1\GoalSatisfactionQualityLogHandler.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\GroupHandler.ts" />
@@ -113,10 +128,10 @@
     <TypeScriptCompile Include="handlers\v1\index.ts" />
     <TypeScriptCompile Include="handlers\v1\LoginHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\LogoutHandler.ts" />
-    <TypeScriptCompile Include="handlers\v1\QuestionHandler.ts" />
-    <TypeScriptCompile Include="handlers\v1\SatisfactionHandler.ts">
+    <TypeScriptCompile Include="handlers\v1\PerceivedFormationSatisfactionLogHandler.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="handlers\v1\QuestionHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\StudentHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\UserHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\UserScoringHandler.ts" />

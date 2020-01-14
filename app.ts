@@ -15,17 +15,20 @@ import {
 } from './handlers/generic';
 import {
   ConstraintHandler,
+  ConstraintSatisfactionQualityLogHandler,
   EvaluationFormHandler,
   EvaluationHandler,
   EvaluationLogHandler,
+  FormationQualityLogHandler,
   GoalHandler,
+  GoalSatisfactionQualityLogHandler,
   GroupHandler,
   GroupScoringHandler,
   GroupScoringLogHandler,
   LoginHandler,
   LogoutHandler,
+  PerceivedFormationSatisfactionLogHandler,
   QuestionHandler,
-  SatisfactionHandler,
   StudentHandler,
   UserHandler,
   UserScoringHandler,
@@ -61,7 +64,10 @@ centaurus.use('/api/group_scoring_log', jwtGuard, GroupScoringLogHandler);
 centaurus.use('/api/eval_log', jwtGuard, EvaluationLogHandler);
 centaurus.use('/api/goal', jwtGuard, GoalHandler);
 centaurus.use('/api/constraint', jwtGuard, ConstraintHandler);
-centaurus.use('/api/satisfaction', jwtGuard, SatisfactionHandler);
+centaurus.use('/api/csq/log', jwtGuard, ConstraintSatisfactionQualityLogHandler);
+centaurus.use('/api/fq/log', jwtGuard, FormationQualityLogHandler);
+centaurus.use('/api/gsq/log', jwtGuard, GoalSatisfactionQualityLogHandler);
+centaurus.use('/api/pfs/log', jwtGuard, PerceivedFormationSatisfactionLogHandler);
 centaurus.use('/api', EvaluationFormHandler);
 centaurus.use('/api/login', LoginHandler);
 centaurus.use('/api/logout', LogoutHandler);

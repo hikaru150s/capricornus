@@ -4,6 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   RelationId,
@@ -11,6 +12,7 @@ import {
 import { BaseEntity } from '../classes';
 import { IPersonality } from '../interfaces';
 import { Group } from './Group';
+import { PerceivedFormationSatisfactionLog } from './PerceivedFormationSatisfactionLog';
 import { User } from './User';
 
 @Entity({ name: 'student', withoutRowid: true })
@@ -37,6 +39,9 @@ export class Student extends BaseEntity {
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
   public id: number;
+
+  @OneToMany(_type => PerceivedFormationSatisfactionLog, t => t.target)
+  public perceivedFormationSatisfactionLog: Promise<Array<PerceivedFormationSatisfactionLog>>;
 
   @Column({
     type: 'simple-json', default: JSON.stringify({
