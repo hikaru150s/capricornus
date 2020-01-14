@@ -13,4 +13,3 @@ export * from './Goal';
 export * from './ConstsraintSatisfactionQualityLog';
 export * from './FormationQualityLog';
 export * from './GoalSatisfactionQualityLog';
-export * from './PerceivedFormationSatisfactionLog';

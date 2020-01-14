@@ -67,7 +67,6 @@ centaurus.use('/api/constraint', jwtGuard, ConstraintHandler);
 centaurus.use('/api/csq/log', jwtGuard, ConstraintSatisfactionQualityLogHandler);
 centaurus.use('/api/fq/log', jwtGuard, FormationQualityLogHandler);
 centaurus.use('/api/gsq/log', jwtGuard, GoalSatisfactionQualityLogHandler);
-centaurus.use('/api/pfs/log', jwtGuard, PerceivedFormationSatisfactionLogHandler);
 centaurus.use('/api', EvaluationFormHandler);
 centaurus.use('/api/login', LoginHandler);
 centaurus.use('/api/logout', LogoutHandler);

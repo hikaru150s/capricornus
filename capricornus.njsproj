@@ -82,9 +82,6 @@
     <TypeScriptCompile Include="entities\GroupScoring.ts" />
     <TypeScriptCompile Include="entities\GroupScoringLog.ts" />
     <TypeScriptCompile Include="entities\index.ts" />
-    <TypeScriptCompile Include="entities\PerceivedFormationSatisfactionLog.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="entities\Question.ts" />
     <TypeScriptCompile Include="entities\Student.ts" />
     <TypeScriptCompile Include="entities\User.ts" />
@@ -128,9 +125,6 @@
     <TypeScriptCompile Include="handlers\v1\index.ts" />
     <TypeScriptCompile Include="handlers\v1\LoginHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\LogoutHandler.ts" />
-    <TypeScriptCompile Include="handlers\v1\PerceivedFormationSatisfactionLogHandler.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\QuestionHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\StudentHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\UserHandler.ts" />
