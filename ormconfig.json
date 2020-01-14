@@ -4,7 +4,7 @@
   "port": 3306,
   "username": "root",
   "password": "",
-  "database": "corona-borealis",
+  "database": "corona",
   "entities": [ "entities/*.js", "entities/*.ts" ],
   "logging": "true",
   "synchronize": "true",

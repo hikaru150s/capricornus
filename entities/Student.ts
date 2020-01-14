@@ -20,7 +20,7 @@ export class Student extends BaseEntity {
   }
   public static readonly tableName: string = 'student';
 
-  @Column({ type: 'integer' })
+  @Column({ type: 'integer', default: 0 })
   @IsNotEmpty()
   @IsNumber()
   public active_reflective: number;
@@ -37,12 +37,12 @@ export class Student extends BaseEntity {
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
   public id: number;
 
-  @Column({ type: 'integer' })
+  @Column({ type: 'integer', default: 0 })
   @IsNotEmpty()
   @IsNumber()
   public sensing_intuitive: number;
 
-  @Column({ type: 'integer' })
+  @Column({ type: 'integer', default: 0 })
   @IsNotEmpty()
   @IsNumber()
   public sequential_global: number;
@@ -57,8 +57,25 @@ export class Student extends BaseEntity {
   @RelationId((t: Student) => t.user)
   public userId: number;
 
-  @Column({ type: 'integer' })
+  @Column({ type: 'integer', default: 0 })
   @IsNotEmpty()
   @IsNumber()
   public visual_verbal: number;
+
+  @Column({
+    type: 'simple-json', default: JSON.stringify({
+      O: 0,
+      C: 0,
+      E: 0,
+      A: 0,
+      N: 0,
+    }),
+  })
+  public personality: {
+      O: number;
+      C: number;
+      E: number;
+      A: number;
+      N: number;
+  };
 }
