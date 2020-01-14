@@ -63,15 +63,26 @@ centaurus.use(notFoundHandler);
 // Handle Error
 centaurus.use(errorHandler);
 
-createConnection().then(result => {
-  const server = http.createServer(centaurus).listen(centaurus.get('port'), () => {
-    server.setTimeout(300000);
-    const now = new Date().toISOString();
-    const listeningPort = (server.address() as AddressInfo).port;
-    console.log(`Server started in [${now}], listening to port ${listeningPort}.`);
-    console.log('Database Status:', result.isConnected ? 'Connected' : 'Disconnected');
-  });
-}).catch(err => {
-  console.error('Error in DB:', err);
-  process.exit();
-});
+(async () => {
+  try {
+    const connection = await createConnection();
+    /*
+     * Trivial DB Creation (performance)
+     *
+     * create database if not exists corona
+     * default character set = "utf8mb4"
+     * default collate = "utf8mb4_unicode_ci"
+     */
+    await connection.createQueryRunner().createDatabase('corona', true);
+    const server = http.createServer(centaurus).listen(centaurus.get('port'), () => {
+      server.setTimeout(300000);
+      const now = new Date().toISOString();
+      const listeningPort = (server.address() as AddressInfo).port;
+      console.log(`Server started in [${now}], listening to port ${listeningPort}.`);
+      console.log('Database Status:', connection.isConnected ? 'Connected' : 'Disconnected');
+    });
+  } catch (err) {
+    console.error('Error in DB:', err);
+    process.exit();
+  }
+})();
