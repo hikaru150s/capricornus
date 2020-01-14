@@ -107,10 +107,16 @@
     <TypeScriptCompile Include="handlers\v1\ConstraintSatisfactionQualityLogHandler.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="handlers\v1\CsqMetricHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\EvaluationFormHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\EvaluationHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\EvaluationLogHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\FormationQualityLogHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="handlers\v1\FqHandler.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\GoalHandler.ts">
@@ -122,9 +128,15 @@
     <TypeScriptCompile Include="handlers\v1\GroupHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\GroupScoringHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\GroupScoringLogHandler.ts" />
+    <TypeScriptCompile Include="handlers\v1\GsqHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\index.ts" />
     <TypeScriptCompile Include="handlers\v1\LoginHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\LogoutHandler.ts" />
+    <TypeScriptCompile Include="handlers\v1\PfsHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="handlers\v1\QuestionHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\StudentHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\UserHandler.ts" />

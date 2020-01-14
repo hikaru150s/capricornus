@@ -16,3 +16,7 @@ export { router as ConstraintHandler } from './ConstraintHandler';
 export { router as ConstraintSatisfactionQualityLogHandler } from './ConstraintSatisfactionQualityLogHandler';
 export { router as FormationQualityLogHandler } from './FormationQualityLogHandler';
 export { router as GoalSatisfactionQualityLogHandler } from './GoalSatisfactionQualityLogHandler';
+export { router as CsqMetricHandler } from './CsqMetricHandler';
+export { router as FqHandler } from './FqHandler';
+export { router as GsqHandler } from './GsqHandler';
+export { router as PfsHandler } from './PfsHandler';
