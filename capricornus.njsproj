@@ -141,6 +141,9 @@
     <TypeScriptCompile Include="utils\index.ts" />
     <TypeScriptCompile Include="utils\parseRequest.ts" />
     <TypeScriptCompile Include="utils\passwords.ts" />
+    <TypeScriptCompile Include="utils\stats.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
