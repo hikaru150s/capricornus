@@ -9,6 +9,7 @@ import {
   RelationId,
 } from 'typeorm';
 import { BaseEntity } from '../classes';
+import { IPersonality } from '../interfaces';
 import { Group } from './Group';
 import { User } from './User';
 
@@ -37,6 +38,17 @@ export class Student extends BaseEntity {
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
   public id: number;
 
+  @Column({
+    type: 'simple-json', default: JSON.stringify({
+      O: 0,
+      C: 0,
+      E: 0,
+      A: 0,
+      N: 0,
+    }),
+  })
+  public personality: IPersonality;
+
   @Column({ type: 'integer', default: 0 })
   @IsNotEmpty()
   @IsNumber()
@@ -61,21 +73,4 @@ export class Student extends BaseEntity {
   @IsNotEmpty()
   @IsNumber()
   public visual_verbal: number;
-
-  @Column({
-    type: 'simple-json', default: JSON.stringify({
-      O: 0,
-      C: 0,
-      E: 0,
-      A: 0,
-      N: 0,
-    }),
-  })
-  public personality: {
-      O: number;
-      C: number;
-      E: number;
-      A: number;
-      N: number;
-  };
 }

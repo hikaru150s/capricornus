@@ -4,6 +4,7 @@ import { getRepository } from 'typeorm';
 import { Group, Student } from '../../entities';
 import { UserRoleType } from '../../enums';
 import { BadRequestError, GenericError, NotFoundError } from '../../errors';
+import { IPersonality } from '../../interfaces';
 import { asyncHandlers } from '../../middlewares';
 import { parseRequest } from '../../utils';
 
@@ -30,6 +31,7 @@ router.get('/', asyncHandlers(async (req, res, next) => {
       groupId: number;
       id?: number;
       name: string;
+      personality: IPersonality;
       role: UserRoleType;
       sensing_intuitive: number;
       sequential_global: number;
@@ -45,6 +47,7 @@ router.get('/', asyncHandlers(async (req, res, next) => {
         name: userRef.name,
         email: userRef.email,
         role: userRef.role,
+        personality: student.personality,
         groupId: student.groupId,
         active_reflective: student.active_reflective,
         sensing_intuitive: student.sensing_intuitive,
@@ -73,6 +76,7 @@ router.get('/:id', asyncHandlers(async (req, res, next) => {
       name: userRef.name,
       email: userRef.email,
       role: userRef.role,
+      personality: student.personality,
       groupId: student.groupId,
       active_reflective: student.active_reflective,
       sensing_intuitive: student.sensing_intuitive,
@@ -116,6 +120,13 @@ router.put('/:id', asyncHandlers(async (req, res, next) => {
     if (req.body?.groupId) {
       x.group = getRepository(Group).findOne(req.body.groupId);
     }
+    x.personality = req.body?.personality ? req.body.personality : {
+      O: 0,
+      C: 0,
+      E: 0,
+      A: 0,
+      N: 0,
+    };
     x.active_reflective = req.body?.active_reflective ? req.body.active_reflective : 0;
     x.sensing_intuitive = req.body?.sensing_intuitive ? req.body.sensing_intuitive : 0;
     x.sequential_global = req.body?.sequential_global ? req.body.sequential_global : 0;
@@ -134,6 +145,7 @@ router.put('/:id', asyncHandlers(async (req, res, next) => {
       name: userRef.name,
       email: userRef.email,
       role: userRef.role,
+      personality: student.personality,
       groupId: student.groupId,
       active_reflective: student.active_reflective,
       sensing_intuitive: student.sensing_intuitive,

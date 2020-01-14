@@ -101,6 +101,9 @@
     <TypeScriptCompile Include="handlers\v1\UserScoringHandler.ts" />
     <TypeScriptCompile Include="handlers\v1\UserScoringLogHandler.ts" />
     <TypeScriptCompile Include="interfaces\index.ts" />
+    <TypeScriptCompile Include="interfaces\IPersonality.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="interfaces\IResponse.ts" />
     <TypeScriptCompile Include="middlewares\asyncHandlers.ts" />
     <TypeScriptCompile Include="middlewares\index.ts" />
