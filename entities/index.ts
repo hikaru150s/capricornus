@@ -8,3 +8,6 @@ export * from './Question';
 export * from './UserScoringLog';
 export * from './GroupScoringLog';
 export * from './EvaluationLog';
+export * from './Constraint';
+export * from './Goal';
+export * from './SatisfactionLog';

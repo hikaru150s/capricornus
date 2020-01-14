@@ -61,18 +61,30 @@
     <TypeScriptCompile Include="classes\index.ts" />
     <TypeScriptCompile Include="drivers\BaseDriver.ts" />
     <TypeScriptCompile Include="drivers\MongoDriver.ts" />
+    <TypeScriptCompile Include="entities\Constraint.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="entities\Evaluation.ts" />
     <TypeScriptCompile Include="entities\EvaluationLog.ts" />
+    <TypeScriptCompile Include="entities\Goal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="entities\Group.ts" />
     <TypeScriptCompile Include="entities\GroupScoring.ts" />
     <TypeScriptCompile Include="entities\GroupScoringLog.ts" />
     <TypeScriptCompile Include="entities\index.ts" />
     <TypeScriptCompile Include="entities\Question.ts" />
+    <TypeScriptCompile Include="entities\SatisfactionLog.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="entities\Student.ts" />
     <TypeScriptCompile Include="entities\User.ts" />
     <TypeScriptCompile Include="entities\UserScoring.ts" />
     <TypeScriptCompile Include="entities\UserScoringLog.ts" />
     <TypeScriptCompile Include="enums\index.ts" />
+    <TypeScriptCompile Include="enums\SatisfactionScope.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="enums\ScoringSessionType.ts" />
     <TypeScriptCompile Include="enums\UserRoleType.ts" />
     <TypeScriptCompile Include="errors\BadRequestError.ts" />
