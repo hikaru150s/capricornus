@@ -1,9 +1,14 @@
 import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { SatisfactionLog } from './SatisfactionLog';
+import { ConstraintSatisfactionQualityLog } from './ConstsraintSatisfactionQualityLog';
+import { FormationQualityLog } from './FormationQualityLog';
+import { GoalSatisfactionQualityLog } from './GoalSatisfactionQualityLog';
 
 @Entity({ name: 'Constraints' })
 export class Constraint {
+
+  @OneToMany(_type => ConstraintSatisfactionQualityLog, el => el.constraint)
+  public constraintSatisfactionQualityLog: Promise<Array<ConstraintSatisfactionQualityLog>>;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   public created_at: Date;
@@ -13,6 +18,12 @@ export class Constraint {
   @IsString()
   public description: string;
 
+  @OneToMany(_type => FormationQualityLog, el => el.constraint)
+  public formationQualityLog: Promise<Array<FormationQualityLog>>;
+
+  @OneToMany(_type => GoalSatisfactionQualityLog, el => el.constraint)
+  public goalSatisfactionQualityLog: Promise<Array<GoalSatisfactionQualityLog>>;
+
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
   public id: number;
 
@@ -21,9 +32,6 @@ export class Constraint {
   @IsString()
   @MaxLength(64)
   public name: string;
-
-  @OneToMany(_type => SatisfactionLog, el => el.constraint)
-  public satisfactionLog: Promise<Array<SatisfactionLog>>;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   public updated_at: Date;

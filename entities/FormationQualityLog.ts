@@ -7,7 +7,7 @@ import { Group } from './Group';
 @Entity({ name: 'formation_quality_log' })
 export class FormationQualityLog {
 
-  @ManyToOne(_type => Constraint, t => t.satisfactionLog)
+  @ManyToOne(_type => Constraint, t => t.formationQualityLog)
   public constraint: Promise<Constraint>;
 
   @RelationId((t: FormationQualityLog) => t.constraint)
@@ -16,7 +16,7 @@ export class FormationQualityLog {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   public created_at: Date;
 
-  @ManyToOne(_type => Goal, t => t.satisfactionLog)
+  @ManyToOne(_type => Goal, t => t.formationQualityLog)
   public goal: Promise<Goal>;
 
   @RelationId((t: FormationQualityLog) => t.goal)

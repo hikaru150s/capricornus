@@ -7,7 +7,7 @@ import { Group } from './Group';
 @Entity({ name: 'constraint_satisfaction_quality_log' })
 export class ConstraintSatisfactionQualityLog {
 
-  @ManyToOne(_type => Constraint, t => t.satisfactionLog)
+  @ManyToOne(_type => Constraint, t => t.constraintSatisfactionQualityLog)
   public constraint: Promise<Constraint>;
 
   @RelationId((t: ConstraintSatisfactionQualityLog) => t.constraint)
@@ -16,7 +16,7 @@ export class ConstraintSatisfactionQualityLog {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   public created_at: Date;
 
-  @ManyToOne(_type => Goal, t => t.satisfactionLog)
+  @ManyToOne(_type => Goal, t => t.constraintSatisfactionQualityLog)
   public goal: Promise<Goal>;
 
   @RelationId((t: ConstraintSatisfactionQualityLog) => t.goal)
