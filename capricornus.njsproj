@@ -150,6 +150,7 @@
     <TypeScriptCompile Include="middlewares\asyncHandlers.ts" />
     <TypeScriptCompile Include="middlewares\index.ts" />
     <TypeScriptCompile Include="middlewares\jwtGuard.ts" />
+    <TypeScriptCompile Include="utils\errorLogger.ts" />
     <TypeScriptCompile Include="utils\index.ts" />
     <TypeScriptCompile Include="utils\parseRequest.ts" />
     <TypeScriptCompile Include="utils\passwords.ts" />
