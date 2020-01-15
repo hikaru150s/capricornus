@@ -289,7 +289,7 @@ router.get('/form/:userId/eval/:evalId', cache('10 minutes'), jwtGuard, asyncHan
     if (e instanceof GenericError) {
       next(e);
     } else {
-      next(new GenericError(e.toString(), 500));
+      next(new GenericError(e, 500));
     }
   }
 }));
@@ -304,7 +304,7 @@ router.get('/card/:userId', cache('10 minutes'), jwtGuard, asyncHandlers(async (
     if (e instanceof GenericError) {
       next(e);
     } else {
-      next(new GenericError(e.toString(), 500));
+      next(new GenericError(e, 500));
     }
   }
 }));
@@ -381,7 +381,7 @@ router.get('/summary', cache('10 minutes'), jwtGuard, asyncHandlers(async (req, 
     if (e instanceof GenericError) {
       next(e);
     } else {
-      next(new GenericError(e.toString(), 500));
+      next(new GenericError(e, 500));
     }
   }
 }));

@@ -28,7 +28,7 @@ router.get('/', asyncHandlers(async (req, res, next) => {
     if (e instanceof GenericError) {
       next(e);
     } else {
-      next(new GenericError(e.toString(), 500));
+      next(new GenericError(e, 500));
     }
   }
 }));
@@ -60,7 +60,7 @@ router.post('/', asyncHandlers(async (req, res, next) => {
     if (e instanceof GenericError) {
       next(e);
     } else {
-      next(new GenericError(e.toString(), 500));
+      next(new GenericError(e, 500));
     }
   }
 }));
@@ -83,7 +83,7 @@ router.put('/:id', asyncHandlers(async (req, res, next) => {
     if (e instanceof GenericError) {
       next(e);
     } else {
-      next(new GenericError(e.toString(), 500));
+      next(new GenericError(e, 500));
     }
   }
 }));
@@ -100,7 +100,7 @@ router.delete('/:id', asyncHandlers(async (req, res, next) => {
     if (e instanceof GenericError) {
       next(e);
     } else {
-      next(new GenericError(e.toString(), 500));
+      next(new GenericError(e, 500));
     }
   }
 }));

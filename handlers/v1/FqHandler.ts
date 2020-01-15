@@ -77,6 +77,6 @@ router.get('/', asyncHandlers(async (req, res, next) => {
       cohort: cohort(stdDev(metric.map(v => v.constraintAverage))),
     });
   } catch (e) {
-    next(new GenericError(e.toString(), 500));
+    next(new GenericError(e, 500));
   }
 }));

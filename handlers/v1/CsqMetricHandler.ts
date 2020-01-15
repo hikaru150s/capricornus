@@ -104,6 +104,6 @@ router.get('/', asyncHandlers(async (req, res, next) => {
       constraintStruct,
     });
   } catch (e) {
-    next(new GenericError(e.toString(), 500));
+    next(new GenericError(e, 500));
   }
 }));
