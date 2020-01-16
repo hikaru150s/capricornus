@@ -39,13 +39,7 @@ export class Student extends BaseEntity {
   public id: number;
 
   @Column({
-    type: 'simple-json', default: JSON.stringify({
-      O: 0,
-      C: 0,
-      E: 0,
-      A: 0,
-      N: 0,
-    }),
+    type: 'simple-json',
   })
   public personality: IPersonality;
 
