@@ -39,7 +39,7 @@ import {
 } from './handlers/v1';
 import { jwtGuard } from './middlewares';
 
-const config: MysqlConnectionOptions = require('./ormconfig.json');
+let config: MysqlConnectionOptions = require('./ormconfig.json');
 const centaurus = express();
 const logDir = join(__dirname, 'logs');
 
@@ -100,6 +100,7 @@ centaurus.use(errorHandler);
       const hasDB = await master.createQueryRunner().hasDatabase('corona');
       if (!hasDB) {
         await master.createQueryRunner().createDatabase('corona', true);
+        config = {...config,  synchronize: true};
       }
       await master.close();
       // Close root and establish user-level connection
