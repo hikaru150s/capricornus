@@ -21,7 +21,6 @@ enum EvalContext {
 }
 
 enum CorrelationContext {
-  PERSONALITY_TYPE = 'Personality Type',
   COGNITIVE = 'Cognitive',
   SKILL = 'Skill',
   COLLABORATION_PERFORMANCE = 'Collaboration Performance',
@@ -235,21 +234,23 @@ async function generateCardFromStudent(userId: number): Promise<ICardData> {
   return result;
 }
 
-function avg<T>(data: Array<T>, mapper: (value?: T, index?: number, arr?: Array<T>) => number): number {
-  return data.length === 0 ? 0 : data.map(mapper).reduce((p, c) => p += c, 0) / data.length;
+function sum(values: Array<number>): number {
+  return values.reduce((p, c) => p + c, 0);
 }
 
-function rankAvg(n: number, d: Array<number>): number {
-  return avg(d.sort((a, b) => b - a).map((v, i) => v === n ? i + 1 : null).filter(v => v), (v) => v);
+function avg<T>(data: Array<T>, mapper: (value?: T, index?: number, arr?: Array<T>) => number): number {
+  return data.length === 0 ? 0 : data.map(mapper).reduce((p, c) => p += c, 0) / data.length;
 }
 
 function correlation(x: Array<number>, y: Array<number>): number {
   if (x.length !== y.length && x.length > 0) {
     throw new RangeError('X length and Y length are mismatch or 0!');
   } else {
-    const up = x.map((v, i) => Math.pow(rankAvg(v, x) - rankAvg(y[i], y), 2)).reduce((p, c) => p += c, 0);
-    const down = x.length * (Math.pow(x.length, 2) - 1);
-    return 1 - (up / down * 6);
+    const up = (x.length * sum(x.map((v, i) => v * y[i]))) - (sum(x) * sum(y));
+    const down =
+      Math.sqrt((x.length * sum(x.map(v => v ** 2))) - (sum(x) ** 2)) *
+      Math.sqrt((y.length * sum(y.map(v => v ** 2))) - (sum(y) ** 2));
+    return down === 0 ? 0 : (up / down);
   }
 }
 
@@ -257,7 +258,8 @@ function significance(x: Array<number>, y: Array<number>): number {
   if (x.length !== y.length && x.length > 0) {
     throw new RangeError('X length and Y length are mismatch or 0!');
   } else {
-    return correlation(x, y) / Math.sqrt(x.length - 1);
+    const coef = correlation(x, y);
+    return coef * Math.sqrt((x.length - 2) / (1 - (coef ** 2)));
   }
 }
 
@@ -334,13 +336,10 @@ router.get('/summary', cache('10 minutes'), jwtGuard, asyncHandlers(async (req, 
       });
     });
     //console.log('ski:', ski);
-    const fel = studentsRef.map(s => s.felderScore);
-    //console.log('fel:', fel);
     const dataSelect = (scope: CorrelationContext) => {
       switch (scope) {
         case CorrelationContext.COGNITIVE: { return cog; }
         case CorrelationContext.COLLABORATION_PERFORMANCE: { return col; }
-        case CorrelationContext.PERSONALITY_TYPE: { return fel; }
         case CorrelationContext.SKILL: { return ski; }
         default: { return []; }
       }
@@ -350,7 +349,6 @@ router.get('/summary', cache('10 minutes'), jwtGuard, asyncHandlers(async (req, 
     const scope = [
       CorrelationContext.COGNITIVE,
       CorrelationContext.COLLABORATION_PERFORMANCE,
-      CorrelationContext.PERSONALITY_TYPE,
       CorrelationContext.SKILL,
     ];
     let result: Array<ISummary> = [];
