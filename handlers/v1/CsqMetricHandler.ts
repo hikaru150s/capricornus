@@ -11,7 +11,7 @@ interface ICsqMetric {
       [constraintName: string]: number;
     };
   };
-  groupId: number;
+  groupId: string;
   groupName: string;
   metric: {
     [goalName: string]: {

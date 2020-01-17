@@ -32,10 +32,10 @@ export class Student extends BaseEntity {
   public group?: Promise<Group>;
 
   @RelationId((t: Student) => t.group)
-  public groupId?: number;
+  public groupId?: string;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
-  public id: number;
+  public id: string;
 
   @Column({
     type: 'simple-json',
@@ -58,7 +58,7 @@ export class Student extends BaseEntity {
   public user: Promise<User>;
 
   @RelationId((t: Student) => t.user)
-  public userId: number;
+  public userId: string;
 
   @Column({ type: 'integer', default: 0 })
   @IsNumber()

@@ -13,7 +13,7 @@ export class EvaluationLog extends BaseEntity {
   public created_at: Date;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
-  public id: number;
+  public id: string;
 
   @ManyToOne(_type => Question, t => t.evaluationLogs, {
     onDelete: 'SET NULL',
@@ -22,10 +22,10 @@ export class EvaluationLog extends BaseEntity {
   public question: Promise<Question>;
 
   @RelationId((t: EvaluationLog) => t.question)
-  public questionId: number;
+  public questionId: string;
 
   @Column({ type: 'bigint', unsigned: true })
-  public reviewer: number;
+  public reviewer: string;
 
   @ManyToOne(_type => Evaluation, t => t.evaluationLogs, {
     onDelete: 'SET NULL',
@@ -34,7 +34,7 @@ export class EvaluationLog extends BaseEntity {
   public subject: Promise<Evaluation>;
 
   @RelationId((t: EvaluationLog) => t.subject)
-  public subjectId: number;
+  public subjectId: string;
 
   @ManyToOne(_type => User, t=> t.evaluationLogs, {
     onDelete: 'SET NULL',
@@ -43,7 +43,7 @@ export class EvaluationLog extends BaseEntity {
   public target: Promise<User>;
 
   @RelationId((t: EvaluationLog) => t.target)
-  public targetId: number;
+  public targetId: string;
 
   @Column({ type: 'integer' })
   @IsNotEmpty()

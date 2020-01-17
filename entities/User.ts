@@ -23,7 +23,7 @@ export class User extends BaseEntity {
   public evaluationLogs: Promise<Array<EvaluationLog>>;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
-  public id: number;
+  public id: string;
 
   @Column({ type: 'varchar', length: 64 })
   @IsNotEmpty()

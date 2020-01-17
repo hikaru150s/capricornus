@@ -11,7 +11,7 @@ export class UserScoring extends BaseEntity {
   public created_at: Date;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
-  public id: number;
+  public id: string;
 
   @Column({ type: 'varchar', length: 64 })
   @IsNotEmpty()

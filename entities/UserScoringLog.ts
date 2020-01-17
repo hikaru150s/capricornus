@@ -13,7 +13,7 @@ export class UserScoringLog extends BaseEntity {
   public created_at: Date;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
-  public id: number;
+  public id: string;
 
   @Column({ type: 'bigint', unsigned: true })
   public reviewer: number;
@@ -25,13 +25,13 @@ export class UserScoringLog extends BaseEntity {
   public subject: Promise<UserScoring>;
 
   @RelationId((t: UserScoringLog) => t.subject)
-  public subjectId: number;
+  public subjectId: string;
 
   @ManyToOne(_type => User, t => t.userScoringLogs)
   public target: Promise<User>;
 
   @RelationId((t: UserScoringLog) => t.target)
-  public targetId: number;
+  public targetId: string;
 
   @Column({ type: 'integer' })
   @IsNotEmpty()

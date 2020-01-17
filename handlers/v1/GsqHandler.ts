@@ -13,7 +13,7 @@ interface IGsqMetric {
       [constraintName: string]: number;
     };
   };
-  groupId: number;
+  groupId: string;
   groupName: string;
 }
 

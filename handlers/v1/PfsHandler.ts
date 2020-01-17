@@ -18,7 +18,7 @@ interface IPfsTreeRowStructure {
   groupStdDev?: number;
   kind: 'individual' | 'group';
   // Individual-only
-  studentId?: number;
+  studentId?: string;
   studentName?: string;
 }
 

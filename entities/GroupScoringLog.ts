@@ -12,7 +12,7 @@ export class GroupScoringLog extends BaseEntity {
   public created_at: Date;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
-  public id: number;
+  public id: string;
 
   @Column({ type: 'bigint', unsigned: true })
   public reviewer: number;
@@ -21,13 +21,13 @@ export class GroupScoringLog extends BaseEntity {
   public subject: Promise<GroupScoring>;
 
   @RelationId((t: GroupScoringLog) => t.subject)
-  public subjectId: number;
+  public subjectId: string;
 
   @ManyToOne(_type => Group, t => t.groupScoringLog)
   public target: Promise<Group>;
 
   @RelationId((t: GroupScoringLog) => t.target)
-  public targetId: number;
+  public targetId: string;
 
   @Column({ type: 'integer' })
   @IsNotEmpty()

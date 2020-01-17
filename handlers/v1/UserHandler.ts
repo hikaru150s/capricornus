@@ -117,7 +117,7 @@ router.put('/:id', jwtGuard, asyncHandlers(async (req, res, next) => {
 
 router.delete('/:id', jwtGuard, asyncHandlers(async (req, res, next) => {
   try {
-    const x = await getRepository(User).delete({ id: parseInt(req.params.id, 10) });
+    const x = await getRepository(User).delete({ id: req.params.id });
     if (x.affected > 0) {
       res.status(204);
     } else {

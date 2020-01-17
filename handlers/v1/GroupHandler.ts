@@ -22,7 +22,7 @@ router.get('/', asyncHandlers(async (req, res, next) => {
       .skip(opts.page * opts.limit)
       .take(opts.limit)
       .getManyAndCount();
-
+    console.log('Group Data:', result);
     res.header('x-total-count', result[1].toString()).status(200).json(result[0]);
   } catch (e) {
     if (e instanceof GenericError) {
@@ -83,7 +83,7 @@ router.put('/:id', asyncHandlers(async (req, res, next) => {
 
 router.delete('/:id', asyncHandlers(async (req, res, next) => {
   try {
-    const x = await getRepository(Group).delete({ id: parseInt(req.params.id, 10) });
+    const x = await getRepository(Group).delete({ id: req.params.id });
     if (x.affected > 0) {
       res.status(204);
     } else {

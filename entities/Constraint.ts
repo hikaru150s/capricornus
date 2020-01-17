@@ -25,7 +25,7 @@ export class Constraint {
   public goalSatisfactionQualityLog: Promise<Array<GoalSatisfactionQualityLog>>;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
-  public id: number;
+  public id: string;
 
   @Column({ type: 'varchar', length: 64 })
   @IsNotEmpty()

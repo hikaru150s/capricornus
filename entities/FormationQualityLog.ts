@@ -11,7 +11,7 @@ export class FormationQualityLog {
   public constraint: Promise<Constraint>;
 
   @RelationId((t: FormationQualityLog) => t.constraint)
-  public constraintId: number;
+  public constraintId: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   public created_at: Date;
@@ -20,10 +20,10 @@ export class FormationQualityLog {
   public goal: Promise<Goal>;
 
   @RelationId((t: FormationQualityLog) => t.goal)
-  public goalId: number;
+  public goalId: string;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
-  public id: number;
+  public id: string;
 
   @Column({ type: 'bigint', unsigned: true })
   public reviewer: number;
@@ -32,7 +32,7 @@ export class FormationQualityLog {
   public target: Promise<Group>;
 
   @RelationId((t: FormationQualityLog) => t.target)
-  public targetId: number;
+  public targetId: string;
 
   @Column({ type: 'integer' })
   @IsNotEmpty()

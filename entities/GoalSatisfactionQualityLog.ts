@@ -11,7 +11,7 @@ export class GoalSatisfactionQualityLog {
   public constraint: Promise<Constraint>;
 
   @RelationId((t: GoalSatisfactionQualityLog) => t.constraint)
-  public constraintId: number;
+  public constraintId: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   public created_at: Date;
@@ -20,10 +20,10 @@ export class GoalSatisfactionQualityLog {
   public goal: Promise<Goal>;
 
   @RelationId((t: GoalSatisfactionQualityLog) => t.goal)
-  public goalId: number;
+  public goalId: string;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
-  public id: number;
+  public id: string;
 
   @Column({ type: 'bigint', unsigned: true })
   public reviewer: number;
@@ -32,7 +32,7 @@ export class GoalSatisfactionQualityLog {
   public target: Promise<Group>;
 
   @RelationId((t: GoalSatisfactionQualityLog) => t.target)
-  public targetId: number;
+  public targetId: string;
 
   @Column({ type: 'integer' })
   @IsNotEmpty()

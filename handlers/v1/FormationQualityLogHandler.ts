@@ -90,7 +90,7 @@ router.put('/:id', asyncHandlers(async (req, res, next) => {
 
 router.delete('/:id', asyncHandlers(async (req, res, next) => {
   try {
-    const x = await getRepository(FormationQualityLog).delete({ id: parseInt(req.params.id, 10) });
+    const x = await getRepository(FormationQualityLog).delete({ id: req.params.id });
     if (x.affected > 0) {
       res.status(204);
     } else {

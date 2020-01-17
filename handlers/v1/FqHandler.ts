@@ -11,7 +11,7 @@ interface IFqMetric {
   data: {
     [goalName: string]: number;
   };
-  groupId: number;
+  groupId: string;
   groupName: string;
 }
 

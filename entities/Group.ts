@@ -27,7 +27,7 @@ export class Group extends BaseEntity {
   public groupScoringLog: Promise<Array<GroupScoringLog>>;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
-  public id: number;
+  public id: string;
 
   @OneToMany(_type => Student, t => t.group)
   public members: Promise<Array<Student>>;

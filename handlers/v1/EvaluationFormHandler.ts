@@ -128,7 +128,7 @@ async function generateCardFromStudent(userId: number): Promise<ICardData> {
       };
     }
     //const questionRef = await score.question;
-    const questionRef = { id: score.questionId };
+    const questionRef = { id: parseInt(score.questionId, 10) };
     let target: EvalContext = EvalContext.MAI;
     if (questionRef.id >= 1 && questionRef.id <= 3) {
       target = EvalContext.SHR;
@@ -167,7 +167,7 @@ async function generateCardFromStudent(userId: number): Promise<ICardData> {
         };
       }
       //const questionRef = await score.question;
-      const questionRef = { id: score.questionId };
+      const questionRef = { id: parseInt(score.questionId, 10) };
       let target: EvalContext = EvalContext.MAI;
       if (questionRef.id >= 1 && questionRef.id <= 3) {
         target = EvalContext.SHR;
