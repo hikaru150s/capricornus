@@ -263,7 +263,7 @@ function significance(x: Array<number>, y: Array<number>): number {
   }
 }
 
-router.get('/form/:userId/eval/:evalId', cache('10 minutes'), jwtGuard, asyncHandlers(async (req, res, next) => {
+router.get('/form/:userId/eval/:evalId', jwtGuard, asyncHandlers(async (req, res, next) => {
   try {
     const result: Array<IEvaluationGroupData> = [];
     const studentData = await getRepository(Student).findOne({ where: { userId: req.params.userId } });
@@ -296,7 +296,7 @@ router.get('/form/:userId/eval/:evalId', cache('10 minutes'), jwtGuard, asyncHan
   }
 }));
 
-router.get('/card/:userId', cache('10 minutes'), jwtGuard, asyncHandlers(async (req, res, next) => {
+router.get('/card/:userId', jwtGuard, asyncHandlers(async (req, res, next) => {
   try {
     const userId = req.params.userId;
     const result: ICardData = await generateCardFromStudent(userId);
@@ -311,7 +311,7 @@ router.get('/card/:userId', cache('10 minutes'), jwtGuard, asyncHandlers(async (
   }
 }));
 
-router.get('/summary', cache('10 minutes'), jwtGuard, asyncHandlers(async (req, res, next) => {
+router.get('/summary', jwtGuard, asyncHandlers(async (req, res, next) => {
   try {
     const studentsRef = await getRepository(Student).find({
       where: {
