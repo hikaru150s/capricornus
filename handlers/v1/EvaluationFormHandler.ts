@@ -266,7 +266,10 @@ function significance(x: Array<number>, y: Array<number>): number {
 router.get('/form/:userId/eval/:evalId', jwtGuard, asyncHandlers(async (req, res, next) => {
   try {
     const result: Array<IEvaluationGroupData> = [];
-    const studentData = await getRepository(Student).findOne({ where: { userId: req.params.userId } });
+    const studentData = await getRepository(Student)
+      .createQueryBuilder()
+      .where('userId = :userId', { userId: req.params.userId })
+      .getOne();
     if (studentData && studentData.group) {
       const group = await studentData.group;
       const groupMember = await group.members;
