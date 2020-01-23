@@ -13,8 +13,8 @@ router.get('/', asyncHandlers(async (req, res, next) => {
     const opts = parseRequest(req);
     let runner = getRepository(Evaluation).createQueryBuilder('eval');
     Object.keys(opts.filter).forEach((k, i) => {
-      const cmd = `eval.${k} like %:v%`;
-      const val = { v: opts.filter[k] };
+      const cmd = `eval.${k} like :v`;
+      const val = { v: `%${opts.filter[k]}%` };
       runner = (i === 0) ? runner.where(cmd, val) : runner.andWhere(cmd, val);
     });
     const result = await runner

@@ -27,7 +27,7 @@ enum CorrelationContext {
 }
 
 interface IEvaluationGroupData {
-  id: number;
+  id: string;
   name: string;
   status: boolean;
 }
@@ -76,7 +76,7 @@ interface ISummary {
   significance: number;
 }
 
-async function generateCardFromStudent(userId: number): Promise<ICardData> {
+async function generateCardFromStudent(userId: string): Promise<ICardData> {
   const result: ICardData = {
     user: [],
     group: [],
@@ -298,7 +298,7 @@ router.get('/form/:userId/eval/:evalId', cache('10 minutes'), jwtGuard, asyncHan
 
 router.get('/card/:userId', cache('10 minutes'), jwtGuard, asyncHandlers(async (req, res, next) => {
   try {
-    const userId: number = parseInt(req.params.userId, 10);
+    const userId = req.params.userId;
     const result: ICardData = await generateCardFromStudent(userId);
 
     res.status(200).json(result);

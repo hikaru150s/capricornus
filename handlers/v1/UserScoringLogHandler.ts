@@ -13,8 +13,8 @@ router.get('/', asyncHandlers(async (req, res, next) => {
     const opts = parseRequest(req);
     let runner = getRepository(UserScoringLog).createQueryBuilder('eval');
     Object.keys(opts.filter).forEach((k, i) => {
-      const cmd = `eval.${k} like %:v%`;
-      const val = { v: opts.filter[k] };
+      const cmd = `eval.${k} like :v`;
+      const val = { v: `%${opts.filter[k]}%` };
       runner = (i === 0) ? runner.where(cmd, val) : runner.andWhere(cmd, val);
     });
     const result = await runner
@@ -50,11 +50,13 @@ router.post('/', asyncHandlers(async (req, res, next) => {
     x.subject = getRepository(UserScoring).findOne(req.body.subjectId);
     x.target = getRepository(User).findOne(req.body.targetId);
     x.value = req.body.value;
+    console.log('Target:', await getRepository(User).findOne(req.body.targetId));
     const err = await validate(x);
     if (err.length > 0) {
       throw new BadRequestError(err.join(', '));
     }
     const r = await getRepository(UserScoringLog).save(x);
+    console.log('Res:', JSON.parse(JSON.stringify(r)));
     res.status(201).json(r);
   } catch (e) {
     if (e instanceof GenericError) {

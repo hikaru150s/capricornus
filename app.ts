@@ -117,6 +117,7 @@ centaurus.use(errorHandler);
       server.setTimeout(300000);
       const now = new Date().toISOString();
       const listeningPort = (server.address() as AddressInfo).port;
+      console.log('Server Time:', now);
       console.log(`Server started in [${now}], listening to port ${listeningPort}.`);
       console.log('Database Status:', connection.isConnected ? 'Connected' : 'Disconnected');
     });
