@@ -10,7 +10,8 @@ export class GoalSatisfactionQualityLog {
   @ManyToOne(_type => Constraint, t => t.goalSatisfactionQualityLog)
   public constraint: Promise<Constraint>;
 
-  @RelationId((t: GoalSatisfactionQualityLog) => t.constraint)
+  //@RelationId((t: GoalSatisfactionQualityLog) => t.constraint)
+  @Column({ type: 'bigint', unsigned: true })
   public constraintId: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
@@ -19,7 +20,8 @@ export class GoalSatisfactionQualityLog {
   @ManyToOne(_type => Goal, t => t.goalSatisfactionQualityLog)
   public goal: Promise<Goal>;
 
-  @RelationId((t: GoalSatisfactionQualityLog) => t.goal)
+  //@RelationId((t: GoalSatisfactionQualityLog) => t.goal)
+  @Column({ type: 'bigint', unsigned: true })
   public goalId: string;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
@@ -31,7 +33,8 @@ export class GoalSatisfactionQualityLog {
   @ManyToOne(_type => Group, t => t.goalSatisfactionQualityLog)
   public target: Promise<Group>;
 
-  @RelationId((t: GoalSatisfactionQualityLog) => t.target)
+  //@RelationId((t: GoalSatisfactionQualityLog) => t.target)]
+  @Column({ type: 'bigint', unsigned: true })
   public targetId: string;
 
   @Column({ type: 'integer' })

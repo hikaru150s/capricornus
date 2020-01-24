@@ -54,6 +54,9 @@ router.post('/', asyncHandlers(async (req, res, next) => {
     if (err.length > 0) {
       throw new BadRequestError(err.join(', '));
     }
+    x.constraintId = req.body.constraintId;
+    x.goalId = req.body.goalId;
+    x.targetId = req.body.targetId;
     const r = await getRepository(GoalSatisfactionQualityLog).save(x);
     res.status(201).json(r);
   } catch (e) {
@@ -77,6 +80,9 @@ router.put('/:id', asyncHandlers(async (req, res, next) => {
     if (err.length > 0) {
       throw new BadRequestError(err.join(', '));
     }
+    x.constraintId = req.body.constraintId;
+    x.goalId = req.body.goalId;
+    x.targetId = req.body.targetId;
     const r = await getRepository(GoalSatisfactionQualityLog).save(x);
     res.status(200).json(r);
   } catch (e) {

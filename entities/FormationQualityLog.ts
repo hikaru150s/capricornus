@@ -10,7 +10,8 @@ export class FormationQualityLog {
   @ManyToOne(_type => Constraint, t => t.formationQualityLog)
   public constraint: Promise<Constraint>;
 
-  @RelationId((t: FormationQualityLog) => t.constraint)
+  //@RelationId((t: FormationQualityLog) => t.constraint)
+  @Column({ type: 'bigint', unsigned: true })
   public constraintId: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
@@ -19,7 +20,8 @@ export class FormationQualityLog {
   @ManyToOne(_type => Goal, t => t.formationQualityLog)
   public goal: Promise<Goal>;
 
-  @RelationId((t: FormationQualityLog) => t.goal)
+  //@RelationId((t: FormationQualityLog) => t.goal)
+  @Column({ type: 'bigint', unsigned: true })
   public goalId: string;
 
   @PrimaryGeneratedColumn('increment', { type: 'bigint', unsigned: true })
@@ -31,7 +33,8 @@ export class FormationQualityLog {
   @ManyToOne(_type => Group, t => t.formationQualityLog)
   public target: Promise<Group>;
 
-  @RelationId((t: FormationQualityLog) => t.target)
+  //@RelationId((t: FormationQualityLog) => t.target)
+  @Column({ type: 'bigint', unsigned: true })
   public targetId: string;
 
   @Column({ type: 'integer' })

@@ -58,16 +58,16 @@ router.post('/', asyncHandlers(async (req, res, next) => {
     x.goalId = req.body.goalId;
     x.targetId = req.body.targetId;
     const r = await getRepository(ConstraintSatisfactionQualityLog).save(x);
-    const debug = {
-      constraint: await r.constraint,
-      goal: await r.goal,
-      target: await r.target,
-      prefetch: await getRepository(ConstraintSatisfactionQualityLog).findOne().then(x => Promise.all([
-        x.constraint,
-        x.goal,
-        x.target,
-      ])),
-    };
+    //const debug = {
+    //  constraint: await r.constraint,
+    //  goal: await r.goal,
+    //  target: await r.target,
+    //  prefetch: await getRepository(ConstraintSatisfactionQualityLog).findOne().then(x => Promise.all([
+    //    x.constraint,
+    //    x.goal,
+    //    x.target,
+    //  ])),
+    //};
     res.status(201).json(r);
   } catch (e) {
     if (e instanceof GenericError) {
@@ -90,6 +90,9 @@ router.put('/:id', asyncHandlers(async (req, res, next) => {
     if (err.length > 0) {
       throw new BadRequestError(err.join(', '));
     }
+    x.constraintId = req.body.constraintId;
+    x.goalId = req.body.goalId;
+    x.targetId = req.body.targetId;
     const r = await getRepository(ConstraintSatisfactionQualityLog).save(x);
     res.status(200).json(r);
   } catch (e) {
