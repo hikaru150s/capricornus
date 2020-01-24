@@ -18,7 +18,7 @@ export function guard(req: Request, _res: Response, next: NextFunction) {
         throw new UnathorizedError('Unathorized!');
       }
     } else {
-      throw new UnathorizedError('Unathorized!');
+      next();
     }
   } catch (e) {
     if (e instanceof GenericError) {
