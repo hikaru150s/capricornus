@@ -159,6 +159,9 @@
     <TypeScriptCompile Include="src\utils\index.ts" />
     <TypeScriptCompile Include="src\utils\parseRequest.ts" />
     <TypeScriptCompile Include="src\utils\passwords.ts" />
+    <TypeScriptCompile Include="src\utils\sleep.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\utils\stats.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

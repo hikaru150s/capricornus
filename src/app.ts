@@ -5,9 +5,9 @@ import * as http from 'http';
 import { AddressInfo } from 'net';
 import { join } from 'path';
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
+import { createConnection, Connection } from 'typeorm';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
-import { FORCE_DB } from './globals/Constants';
+import { FORCE_DB, MAX_WAIT_SEC } from './globals/Constants';
 import {
   errorHandler,
   logger,
@@ -38,6 +38,7 @@ import {
   UserScoringLogHandler,
 } from './handlers/v1';
 import { jwtGuard } from './middlewares';
+import { sleep } from './utils';
 
 let config: MysqlConnectionOptions = require('../ormconfig.json');
 const centaurus = express();
@@ -85,34 +86,51 @@ centaurus.use(notFoundHandler);
 centaurus.use(errorHandler);
 
 (async () => {
-  try {
-    if (FORCE_DB) {
-      // Connect to root to check if db is exists
-      const master = await createConnection({
-        type: config.type,
-        host: config.host,
-        port: config.port,
-        username: 'root',
-        password: '',
-        synchronize: false,
-        cache: false,
-      });
-      const hasDB = await master.createQueryRunner().hasDatabase('corona');
-      if (!hasDB) {
-        await master.createQueryRunner().createDatabase('corona', true);
-        config = {...config,  synchronize: true};
+  let connectAttemp = 0;
+  let connected = false;
+  let connection: Connection = null;
+  let lastErr = null;
+  console.log('Connecting ...');
+  do {
+    try {
+      if (FORCE_DB) {
+        // Connect to root to check if db is exists
+        const master = await createConnection({
+          type: config.type,
+          host: config.host,
+          port: config.port,
+          username: 'root',
+          password: '',
+          synchronize: false,
+          cache: false,
+        });
+        const hasDB = await master.createQueryRunner().hasDatabase('corona');
+        if (!hasDB) {
+          await master.createQueryRunner().createDatabase('corona', true);
+          config = { ...config, synchronize: true };
+        }
+        await master.close();
+        // Close root and establish user-level connection
       }
-      await master.close();
-      // Close root and establish user-level connection
+      connection = await createConnection(config);
+      /*
+       * Trivial DB Creation (performance)
+       *
+       * create database if not exists corona
+       * default character set = "utf8mb4"
+       * default collate = "utf8mb4_unicode_ci"
+       */
+      connected = true;
+    } catch (err) {
+      lastErr = err;
+      connectAttemp += 1;
+      if (connectAttemp < MAX_WAIT_SEC) {
+        await sleep(1000);
+      }
     }
-    const connection = await createConnection(config);
-    /*
-     * Trivial DB Creation (performance)
-     *
-     * create database if not exists corona
-     * default character set = "utf8mb4"
-     * default collate = "utf8mb4_unicode_ci"
-     */
+  } while (!connected && connectAttemp < MAX_WAIT_SEC);
+
+  if (connected && connection) {
     const server = http.createServer(centaurus).listen(centaurus.get('port'), () => {
       server.setTimeout(300000);
       const now = new Date().toISOString();
@@ -121,8 +139,8 @@ centaurus.use(errorHandler);
       console.log(`Server started in [${now}], listening to port ${listeningPort}.`);
       console.log('Database Status:', connection.isConnected ? 'Connected' : 'Disconnected');
     });
-  } catch (err) {
-    console.error('Error in DB:', err);
+  } else {
+    console.error('Error in DB:', { lastErr, connectAttemp });
     process.exit();
   }
 })();
