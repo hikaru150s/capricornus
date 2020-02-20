@@ -5,5 +5,5 @@
   "username": "root",
   "password": "",
   "database": "corona",
-  "entities": [ "entities/*.js", "entities/*.ts" ]
+  "entities": [ "dist/entities/*.js" ]
 }

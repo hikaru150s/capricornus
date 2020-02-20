@@ -1,8 +1,9 @@
 {
   "name": "capricornus",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A Capricornus System (Based on Centaurus Engine)",
-  "main": "app.js",
+  "main": "dist/app.js",
+  "license": "MIT",
   "author": {
     "name": "Haikal Handamara",
     "email": "haikaladha1996@gmail.com",
@@ -13,7 +14,8 @@
     "build": "tsc",
     "lint": "tslint --project tslint.json --exclude 'node_modules/**/*.{j,t}s'",
     "lint:fix": "npm run lint -- --fix",
-    "start": "ts-node-dev --respawn --transpileOnly --clear app.ts"
+    "start": "npm run build && node dist/app.js",
+    "dev": "ts-node-dev --respawn --transpileOnly --clear src/app.ts"
   },
   "husky": {
     "hooks": {
