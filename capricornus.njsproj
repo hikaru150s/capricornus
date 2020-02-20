@@ -32,9 +32,13 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include=".dockerignore" />
     <Content Include=".editorconfig" />
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
+    <Content Include="dockerfile">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="ormconfig.json" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
