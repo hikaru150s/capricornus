@@ -5,7 +5,7 @@ import * as http from 'http';
 import { AddressInfo } from 'net';
 import { join } from 'path';
 import 'reflect-metadata';
-import { createConnection, Connection } from 'typeorm';
+import { Connection, createConnection } from 'typeorm';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 import { FORCE_DB, MAX_WAIT_SEC } from './globals/Constants';
 import {
@@ -90,7 +90,6 @@ centaurus.use(errorHandler);
   let connected = false;
   let connection: Connection = null;
   let lastErr = null;
-  console.log('Connecting ...');
   do {
     try {
       if (FORCE_DB) {
