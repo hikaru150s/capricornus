@@ -39,7 +39,7 @@ import {
 } from './handlers/v1';
 import { jwtGuard } from './middlewares';
 
-let config: MysqlConnectionOptions = require('./ormconfig.json');
+let config: MysqlConnectionOptions = require('../ormconfig.json');
 const centaurus = express();
 const logDir = join(__dirname, 'logs');
 
